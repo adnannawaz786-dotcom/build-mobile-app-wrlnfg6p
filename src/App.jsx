@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'sonner';
 import { Camera, List, Settings } from 'lucide-react';
+import { NavLink } from 'react-router-dom'; // import NavLink at top
 
 // Main App Component
 function App() {
@@ -383,38 +384,39 @@ function CameraCapture({ onAddItem }) {
 
 // Bottom Navigation Component
 function BottomNavigation() {
-  const currentPath = window.location.pathname;
-
   return (
     <nav className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
       <div className="max-w-md mx-auto">
         <div className="flex justify-around py-2">
-          <a
-            href="/groceries"
-            className={`flex flex-col items-center py-2 px-4 ${currentPath === '/groceries' ? 'text-blue-600' : 'text-gray-500'
-              }`}
+          <NavLink
+            to="/groceries"
+            className={({ isActive }) =>
+              `flex flex-col items-center py-2 px-4 ${isActive ? 'text-blue-600' : 'text-gray-500'}`
+            }
           >
             <List className="h-6 w-6" />
             <span className="text-xs mt-1">Groceries</span>
-          </a>
+          </NavLink>
 
-          <a
-            href="/camera"
-            className={`flex flex-col items-center py-2 px-4 ${currentPath === '/camera' ? 'text-blue-600' : 'text-gray-500'
-              }`}
+          <NavLink
+            to="/camera"
+            className={({ isActive }) =>
+              `flex flex-col items-center py-2 px-4 ${isActive ? 'text-blue-600' : 'text-gray-500'}`
+            }
           >
             <Camera className="h-6 w-6" />
             <span className="text-xs mt-1">Scan</span>
-          </a>
+          </NavLink>
 
-          <a
-            href="/settings"
-            className={`flex flex-col items-center py-2 px-4 ${currentPath === '/settings' ? 'text-blue-600' : 'text-gray-500'
-              }`}
+          <NavLink
+            to="/settings"
+            className={({ isActive }) =>
+              `flex flex-col items-center py-2 px-4 ${isActive ? 'text-blue-600' : 'text-gray-500'}`
+            }
           >
             <Settings className="h-6 w-6" />
             <span className="text-xs mt-1">Settings</span>
-          </a>
+          </NavLink>
         </div>
       </div>
     </nav>
