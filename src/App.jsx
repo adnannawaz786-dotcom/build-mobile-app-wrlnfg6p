@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'sonner';
-import { Camera, List, Settings, Plus } from 'lucide-react';
+import { Camera, List, Settings } from 'lucide-react';
 
 // Main App Component
 function App() {
@@ -38,8 +38,8 @@ function App() {
   };
 
   const updateGroceryItem = (id, updates) => {
-    setGroceryItems(prev => 
-      prev.map(item => 
+    setGroceryItems(prev =>
+      prev.map(item =>
         item.id === id ? { ...item, ...updates } : item
       )
     );
@@ -61,41 +61,39 @@ function App() {
   }
 
   return (
-    <Router>
-      <div className="min-h-screen bg-gray-50">
-        <Routes>
-          <Route 
-            path="/" 
-            element={<Navigate to="/groceries" replace />} 
-          />
-          <Route 
-            path="/groceries" 
-            element={
-              <GroceryList 
-                items={groceryItems}
-                onUpdateItem={updateGroceryItem}
-                onDeleteItem={deleteGroceryItem}
-              />
-            } 
-          />
-          <Route 
-            path="/camera" 
-            element={
-              <CameraCapture 
-                onAddItem={addGroceryItem}
-              />
-            } 
-          />
-          <Route 
-            path="/settings" 
-            element={<Settings />} 
-          />
-        </Routes>
-        
-        <BottomNavigation />
-        <Toaster position="top-center" richColors />
-      </div>
-    </Router>
+    <div className="min-h-screen bg-gray-50">
+      <Routes>
+        <Route
+          path="/"
+          element={<Navigate to="/groceries" replace />}
+        />
+        <Route
+          path="/groceries"
+          element={
+            <GroceryList
+              items={groceryItems}
+              onUpdateItem={updateGroceryItem}
+              onDeleteItem={deleteGroceryItem}
+            />
+          }
+        />
+        <Route
+          path="/camera"
+          element={
+            <CameraCapture
+              onAddItem={addGroceryItem}
+            />
+          }
+        />
+        <Route
+          path="/settings"
+          element={<Settings />}
+        />
+      </Routes>
+
+      <BottomNavigation />
+      <Toaster position="top-center" richColors />
+    </div>
   );
 }
 
@@ -117,7 +115,7 @@ function GroceryList({ items, onUpdateItem, onDeleteItem }) {
     const today = new Date();
     const expiry = new Date(expiryDate);
     const diffDays = Math.ceil((expiry - today) / (1000 * 60 * 60 * 24));
-    
+
     if (diffDays < 0) return 'expired';
     if (diffDays <= 3) return 'expiring-soon';
     if (diffDays <= 7) return 'warning';
@@ -137,10 +135,10 @@ function GroceryList({ items, onUpdateItem, onDeleteItem }) {
     <div className="max-w-md mx-auto bg-white min-h-screen">
       <div className="sticky top-0 bg-white border-b border-gray-200 p-4">
         <h1 className="text-2xl font-bold text-gray-900 mb-4">My Groceries</h1>
-        
+
         <div className="flex gap-2 mb-4">
-          <select 
-            value={sortBy} 
+          <select
+            value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
             className="flex-1 px-3 py-2 border border-gray-300 rounded-md text-sm"
           >
@@ -163,14 +161,14 @@ function GroceryList({ items, onUpdateItem, onDeleteItem }) {
             {sortedItems.map((item) => {
               const status = getExpiryStatus(item.expiryDate);
               const isEditing = editingItem === item.id;
-              
+
               return (
-                <div 
-                  key={item.id} 
+                <div
+                  key={item.id}
                   className={`p-4 rounded-lg border-2 ${getStatusColor(status)}`}
                 >
                   {isEditing ? (
-                    <EditItemForm 
+                    <EditItemForm
                       item={item}
                       onSave={(updates) => {
                         onUpdateItem(item.id, updates);
@@ -283,7 +281,7 @@ function CameraCapture({ onAddItem }) {
     if (!file) return;
 
     setIsCapturing(true);
-    
+
     // Simulate OCR processing
     setTimeout(() => {
       const mockExtractedItems = [
@@ -310,7 +308,7 @@ function CameraCapture({ onAddItem }) {
     <div className="max-w-md mx-auto bg-white min-h-screen">
       <div className="p-4">
         <h1 className="text-2xl font-bold text-gray-900 mb-6">Scan Groceries</h1>
-        
+
         <div className="space-y-6">
           <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
             <Camera className="h-12 w-12 text-gray-400 mx-auto mb-4" />
@@ -349,7 +347,7 @@ function CameraCapture({ onAddItem }) {
                   Add All
                 </button>
               </div>
-              
+
               <div className="space-y-3">
                 {extractedItems.map((item, index) => (
                   <div key={index} className="border border-gray-200 rounded-lg p-3">
@@ -383,8 +381,6 @@ function CameraCapture({ onAddItem }) {
   );
 }
 
-
-
 // Bottom Navigation Component
 function BottomNavigation() {
   const currentPath = window.location.pathname;
@@ -395,29 +391,26 @@ function BottomNavigation() {
         <div className="flex justify-around py-2">
           <a
             href="/groceries"
-            className={`flex flex-col items-center py-2 px-4 ${
-              currentPath === '/groceries' ? 'text-blue-600' : 'text-gray-500'
-            }`}
+            className={`flex flex-col items-center py-2 px-4 ${currentPath === '/groceries' ? 'text-blue-600' : 'text-gray-500'
+              }`}
           >
             <List className="h-6 w-6" />
             <span className="text-xs mt-1">Groceries</span>
           </a>
-          
+
           <a
             href="/camera"
-            className={`flex flex-col items-center py-2 px-4 ${
-              currentPath === '/camera' ? 'text-blue-600' : 'text-gray-500'
-            }`}
+            className={`flex flex-col items-center py-2 px-4 ${currentPath === '/camera' ? 'text-blue-600' : 'text-gray-500'
+              }`}
           >
             <Camera className="h-6 w-6" />
             <span className="text-xs mt-1">Scan</span>
           </a>
-          
+
           <a
             href="/settings"
-            className={`flex flex-col items-center py-2 px-4 ${
-              currentPath === '/settings' ? 'text-blue-600' : 'text-gray-500'
-            }`}
+            className={`flex flex-col items-center py-2 px-4 ${currentPath === '/settings' ? 'text-blue-600' : 'text-gray-500'
+              }`}
           >
             <Settings className="h-6 w-6" />
             <span className="text-xs mt-1">Settings</span>
