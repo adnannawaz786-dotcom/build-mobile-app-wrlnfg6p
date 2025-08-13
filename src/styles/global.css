@@ -1,0 +1,385 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Material Design 3 Color Tokens - Light Theme */
+    --primary: 40 58 151;
+    --primary-foreground: 255 255 255;
+    --primary-container: 224 231 255;
+    --on-primary-container: 0 16 95;
+    
+    --secondary: 92 95 119;
+    --secondary-foreground: 255 255 255;
+    --secondary-container: 224 231 255;
+    --on-secondary-container: 22 26 44;
+    
+    --tertiary: 120 87 122;
+    --tertiary-foreground: 255 255 255;
+    --tertiary-container: 255 216 255;
+    --on-tertiary-container: 46 21 48;
+    
+    --error: 186 26 26;
+    --error-foreground: 255 255 255;
+    --error-container: 255 218 214;
+    --on-error-container: 65 0 2;
+    
+    --warning: 245 124 0;
+    --warning-foreground: 255 255 255;
+    --warning-container: 255 220 198;
+    --on-warning-container: 44 22 0;
+    
+    --success: 22 163 74;
+    --success-foreground: 255 255 255;
+    --success-container: 220 252 231;
+    --on-success-container: 0 44 13;
+    
+    --background: 255 251 255;
+    --foreground: 27 27 31;
+    --surface: 255 251 255;
+    --surface-variant: 231 224 236;
+    --on-surface: 27 27 31;
+    --on-surface-variant: 73 69 79;
+    
+    --outline: 121 116 126;
+    --outline-variant: 202 196 208;
+    --shadow: 0 0 0;
+    --scrim: 0 0 0;
+    
+    --surface-container-lowest: 255 255 255;
+    --surface-container-low: 247 242 250;
+    --surface-container: 243 237 247;
+    --surface-container-high: 236 230 240;
+    --surface-container-highest: 230 224 233;
+    
+    --muted: 243 237 247;
+    --muted-foreground: 73 69 79;
+    --popover: 255 255 255;
+    --popover-foreground: 27 27 31;
+    --card: 255 255 255;
+    --card-foreground: 27 27 31;
+    --border: 202 196 208;
+    --input: 202 196 208;
+    --ring: 40 58 151;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Material Design 3 Color Tokens - Dark Theme */
+    --primary: 188 199 255;
+    --primary-foreground: 0 16 95;
+    --primary-container: 13 39 123;
+    --on-primary-container: 224 231 255;
+    
+    --secondary: 196 198 221;
+    --secondary-foreground: 43 47 66;
+    --secondary-container: 67 71 92;
+    --on-secondary-container: 224 231 255;
+    
+    --tertiary: 219 187 219;
+    --tertiary-foreground: 68 42 70;
+    --tertiary-container: 94 64 96;
+    --on-tertiary-container: 255 216 255;
+    
+    --error: 255 180 171;
+    --error-foreground: 105 0 5;
+    --error-container: 147 0 10;
+    --on-error-container: 255 218 214;
+    
+    --warning: 255 183 77;
+    --warning-foreground: 66 33 0;
+    --warning-container: 145 77 0;
+    --on-warning-container: 255 220 198;
+    
+    --success: 134 239 172;
+    --success-foreground: 0 57 20;
+    --success-container: 0 109 44;
+    --on-success-container: 220 252 231;
+    
+    --background: 16 14 19;
+    --foreground: 230 225 229;
+    --surface: 16 14 19;
+    --surface-variant: 73 69 79;
+    --on-surface: 230 225 229;
+    --on-surface-variant: 202 196 208;
+    
+    --outline: 147 143 153;
+    --outline-variant: 73 69 79;
+    --shadow: 0 0 0;
+    --scrim: 0 0 0;
+    
+    --surface-container-lowest: 11 10 14;
+    --surface-container-low: 22 21 25;
+    --surface-container: 26 24 29;
+    --surface-container-high: 37 35 40;
+    --surface-container-highest: 48 46 51;
+    
+    --muted: 26 24 29;
+    --muted-foreground: 147 143 153;
+    --popover: 22 21 25;
+    --popover-foreground: 230 225 229;
+    --card: 22 21 25;
+    --card-foreground: 230 225 229;
+    --border: 73 69 79;
+    --input: 73 69 79;
+    --ring: 188 199 255;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Mobile-first responsive design */
+  @media (max-width: 768px) {
+    body {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+  }
+}
+
+@layer components {
+  /* Material Design 3 Elevation Shadows */
+  .elevation-1 {
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  }
+  
+  .elevation-2 {
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  }
+  
+  .elevation-3 {
+    box-shadow: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
+  }
+  
+  .elevation-4 {
+    box-shadow: 0px 6px 10px 4px rgba(0, 0, 0, 0.15), 0px 2px 3px 0px rgba(0, 0, 0, 0.3);
+  }
+  
+  .elevation-5 {
+    box-shadow: 0px 8px 12px 6px rgba(0, 0, 0, 0.15), 0px 4px 4px 0px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Grocery App Specific Styles */
+  .item-card {
+    @apply bg-surface-container rounded-xl p-4 elevation-1 transition-all duration-200;
+  }
+  
+  .item-card:hover {
+    @apply elevation-2;
+  }
+  
+  .item-card.expiring-soon {
+    @apply border-l-4 border-warning bg-warning-container/10;
+  }
+  
+  .item-card.expired {
+    @apply border-l-4 border-error bg-error-container/10;
+  }
+  
+  .item-card.fresh {
+    @apply border-l-4 border-success bg-success-container/10;
+  }
+  
+  /* Camera and Photo Styles */
+  .camera-container {
+    @apply relative w-full h-full bg-black rounded-lg overflow-hidden;
+  }
+  
+  .camera-overlay {
+    @apply absolute inset-0 pointer-events-none;
+  }
+  
+  .camera-guide {
+    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-white/60 rounded-lg;
+    width: 80%;
+    height: 60%;
+  }
+  
+  .camera-button {
+    @apply w-16 h-16 bg-white rounded-full border-4 border-white/30 shadow-lg active:scale-95 transition-transform;
+  }
+  
+  /* Status indicators */
+  .status-dot {
+    @apply w-2 h-2 rounded-full inline-block mr-2;
+  }
+  
+  .status-fresh {
+    @apply bg-success;
+  }
+  
+  .status-expiring {
+    @apply bg-warning;
+  }
+  
+  .status-expired {
+    @apply bg-error;
+  }
+  
+  /* Mobile-specific styles */
+  .mobile-safe-area {
+    @apply pb-safe-area-inset-bottom;
+  }
+  
+  .mobile-header {
+    @apply pt-safe-area-inset-top;
+  }
+  
+  /* Loading states */
+  .loading-shimmer {
+    @apply animate-pulse bg-gradient-to-r from-muted via-muted/50 to-muted bg-[length:200%_100%];
+    animation: shimmer 1.5s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+  
+  /* Floating Action Button */
+  .fab {
+    @apply fixed bottom-6 right-6 w-14 h-14 bg-primary text-primary-foreground rounded-full shadow-lg elevation-3 flex items-center justify-center transition-all duration-200 z-50;
+  }
+  
+  .fab:hover {
+    @apply elevation-4 scale-105;
+  }
+  
+  .fab:active {
+    @apply scale-95;
+  }
+  
+  /* Bottom navigation */
+  .bottom-nav {
+    @apply fixed bottom-0 left-0 right-0 bg-surface-container border-t border-outline-variant z-40;
+  }
+  
+  /* OCR processing overlay */
+  .ocr-processing {
+    @apply fixed inset-0 bg-black/80 flex items-center justify-center z-50;
+  }
+  
+  .processing-spinner {
+    @apply w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin;
+  }
+  
+  /* Form styles */
+  .form-field {
+    @apply space-y-2;
+  }
+  
+  .form-label {
+    @apply text-sm font-medium text-on-surface;
+  }
+  
+  .form-input {
+    @apply w-full px-3 py-2 bg-surface border border-outline rounded-md text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent;
+  }
+  
+  .form-error {
+    @apply text-sm text-error;
+  }
+  
+  /* Notification styles */
+  .notification-badge {
+    @apply absolute -top-2 -right-2 w-5 h-5 bg-error text-error-foreground text-xs rounded-full flex items-center justify-center;
+  }
+}
+
+@layer utilities {
+  /* Safe area utilities for mobile devices */
+  .pt-safe-area-inset-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .pb-safe-area-inset-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .pl-safe-area-inset-left {
+    padding-left: env(safe-area-inset-left);
+  }
+  
+  .pr-safe-area-inset-right {
+    padding-right: env(safe-area-inset-right);
+  }
+  
+  /* Touch-friendly tap targets */
+  .tap-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  /* Prevent text selection on interactive elements */
+  .no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Smooth scrolling */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Hide scrollbars while maintaining functionality */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    @apply text-black bg-white;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --outline: 0 0 0;
+    --outline-variant: 0 0 0;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
