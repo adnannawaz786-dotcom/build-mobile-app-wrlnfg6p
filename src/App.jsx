@@ -383,67 +383,7 @@ function CameraCapture({ onAddItem }) {
   );
 }
 
-// Settings Component
-function Settings() {
-  const [notificationsEnabled, setNotificationsEnabled] = useState(true);
-  const [reminderDays, setReminderDays] = useState(3);
 
-  return (
-    <div className="max-w-md mx-auto bg-white min-h-screen">
-      <div className="p-4">
-        <h1 className="text-2xl font-bold text-gray-900 mb-6">Settings</h1>
-        
-        <div className="space-y-6">
-          <div className="border-b border-gray-200 pb-4">
-            <h2 className="text-lg font-medium mb-4">Notifications</h2>
-            <div className="flex items-center justify-between mb-4">
-              <span>Enable expiry reminders</span>
-              <label className="relative inline-flex items-center cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={notificationsEnabled}
-                  onChange={(e) => setNotificationsEnabled(e.target.checked)}
-                  className="sr-only peer"
-                />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
-              </label>
-            </div>
-            
-            {notificationsEnabled && (
-              <div>
-                <label className="block text-sm font-medium mb-2">
-                  Remind me {reminderDays} days before expiry
-                </label>
-                <input
-                  type="range"
-                  min="1"
-                  max="7"
-                  value={reminderDays}
-                  onChange={(e) => setReminderDays(parseInt(e.target.value))}
-                  className="w-full"
-                />
-              </div>
-            )}
-          </div>
-
-          <div className="border-b border-gray-200 pb-4">
-            <h2 className="text-lg font-medium mb-4">Data</h2>
-            <button className="w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700">
-              Clear All Data
-            </button>
-          </div>
-
-          <div>
-            <h2 className="text-lg font-medium mb-4">About</h2>
-            <p className="text-gray-600 text-sm">
-              Grocery Tracker v1.0.0
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 // Bottom Navigation Component
 function BottomNavigation() {
